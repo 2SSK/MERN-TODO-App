@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 
 const TaskList = () => {
+  const url = "https://mern-todo-app-backend-8j98.onrender.com";
+
   const [tasks, setTasks] = useState([]);
   const [newTask, setNewTask] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3000/todos")
+    fetch(`${url}/todos`)
       .then((res) => res.json())
       .then((data) => setTasks(data))
       .catch((error) => console.error("Failed to fetch tasks:", error));
@@ -14,7 +16,7 @@ const TaskList = () => {
   const addTask = () => {
     if (!newTask.trim()) return;
 
-    fetch("http://localhost:3000/todo", {
+    fetch(`${url}/todo`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ task: newTask, status: false }),
@@ -35,7 +37,7 @@ const TaskList = () => {
   const toggleTask = (taskId) => {
     const task = tasks.find((t) => t._id === taskId);
 
-    fetch("http://localhost:3000/completed", {
+    fetch(`${url}/completed`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ _id: taskId, status: !task.status }),
@@ -48,7 +50,7 @@ const TaskList = () => {
   };
 
   const deleteTask = (taskId) => {
-    fetch(`http://localhost:3000/todo/${taskId}`, {
+    fetch(`${url}/todo/${taskId}`, {
       method: "DELETE",
     })
       .then((response) => response.json())
