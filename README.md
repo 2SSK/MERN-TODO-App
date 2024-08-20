@@ -4,7 +4,7 @@ Welcome to the **Full-Stack To-Do Application**! 🎉 This project is a complete
 
 ## 🖼️ Preview
 
-![Preview](./path-to-your-preview-image.png)
+![Preview](./preview.png)
 
 ## 🚀 Features
 
